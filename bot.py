@@ -16,7 +16,6 @@ class Manager():
         self.config.read("config.cfg")
         stockfish_exe_name = str(self.config.get("stockfish", "stockfish_path_name"))
         stockfish_path = os.path.join('libs', stockfish_exe_name)
-        self.keepPlaying = self.config.get("settings", "keepPlaying")
         self.myturn = False
         self.path = "figures/"
         self.board_width = 0
