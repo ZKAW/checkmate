@@ -1,0 +1,8 @@
+*.log
+*.exe
+config.cfg
+stockfish_path/sf13/
+stockfish_path/DS_Store/
+logs/chessbot_logger.txt
+pictures/*
+__pycache__/
