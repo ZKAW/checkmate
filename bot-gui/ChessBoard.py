@@ -6,7 +6,7 @@ class ChessBoard:
         
 
     def getBoard(self):
-        return self.board  
+        return self.board
 
     def makeMove(self, move):
         self.board.push_san(move)

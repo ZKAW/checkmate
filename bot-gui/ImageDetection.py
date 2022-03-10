@@ -21,7 +21,7 @@ class ImageDetection:
         maxValue1 = 0
         maxValue2 = 0
         dots = "."
-        threshold = 0.8 
+        threshold = 0.75
 
         for c in range(100):
             print(f"Searching board {dots*c}", end="\r")

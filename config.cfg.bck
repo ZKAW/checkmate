@@ -2,3 +2,4 @@
 path=stockfish_exe_name
 [settings]
 legit=true
+skill_level=20

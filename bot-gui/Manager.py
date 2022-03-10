@@ -83,10 +83,9 @@ class Manager(QObject):
             (3.4, 8),
         ]
 
-        self.delay_range_index = 0
+        self.delay_range_index = 0 
 
-    def run(self):
-        
+    def run(self):        
         screenshot = pyautogui.screenshot()
         screenshot.save(self.turn_img)
         imageDet = ImageDetection(self, self.logger)

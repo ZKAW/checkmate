@@ -16,11 +16,21 @@ class Manager():
         self.config.read("config.cfg")
         stockfish_exe_name = str(self.config.get("stockfish", "path"))
         stockfish_path = os.path.join('libs', stockfish_exe_name)
-        self.legit = bool(self.config.get("settings", "legit"))
+        if 'true' in self.config.get('settings', 'legit').lower(): self.legit = True
+        else: self.legit = False
         self.myturn = False
         self.path = "figures/"
         self.board_width = 0
         self.board_height = 0
+
+        self.skill_level = int(self.config.get("settings", "skill_level"))
+        if self.skill_level > 20: self.skill_level = 20
+        elif self.skill_level < 0: self.skill_level = 0
+        elif not self.skill_level: self.skill_level = 20
+
+        if skill_level > 20: skill_level = 20
+        elif skill_level < 0: skill_level = 0
+        elif skill_level == None: skill_level = 20
 
         self.turn_counter = 0
         self.delay_range_table = [
@@ -50,7 +60,7 @@ class Manager():
         self.chessEngine = Engine(stockfish_path, param={
                                 'Threads': 2,
                                 'Ponder': None,
-                                'Skill Level': 20, # min 0 max 20
+                                'Skill Level': self.skill_level, # min 0 max 20
                             })
         self.game_running = True
         self.board = BoardControl()
@@ -60,6 +70,10 @@ class Manager():
 
         # gezogenes feld farbe weiß: R:248,G:247,B:105 grün: R:187,G:203,B:44 -> Zug erkennen von wo wohin
         move = ""
+
+        print(f"\nBot skill level: {self.skill_level}")
+        print(f"Bot is {'legit' if self.legit else 'not legit'}\n")
+
         while self.game_running:
             if self.board.getBoard().is_checkmate():
                 print("Game won!" if not self.myturn else "Game lost!")
@@ -197,7 +211,7 @@ class ImageDet:
         maxValue1 = 0
         maxValue2 = 0
         dots = "."
-        threshold = 0.8 
+        threshold = 0.75
 
         for c in range(100):
             print(f"Searching board {dots*c}", end="\r")
