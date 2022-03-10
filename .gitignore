@@ -4,5 +4,10 @@ config.cfg
 stockfish_path/sf13/
 stockfish_path/DS_Store/
 logs/chessbot_logger.txt
-pictures/*
+pictures/screen.png/
+pictures/turn_screen.png/
+pictures/turn_screen.png
+pictures/screen.png
+pictures/board_detection.png
+pictures/check_detection.png
 __pycache__/

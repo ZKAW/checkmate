@@ -14,7 +14,7 @@ class Manager():
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.read("config.cfg")
-        stockfish_exe_name = str(self.config.get("stockfish", "stockfish_path_name"))
+        stockfish_exe_name = str(self.config.get("stockfish", "stockfish_exe_name"))
         stockfish_path = os.path.join('libs', stockfish_exe_name)
         self.myturn = False
         self.path = "figures/"
@@ -231,8 +231,9 @@ class BoardControl:
         self.path = "pictures/"
         self.imageDet = ImageDet()
 
-        print("Searching board in 2 seconds...", end="\r")
-        time.sleep(1)
+        if not os.path.exists(self.path):
+            os.makedirs(self.path)
+
         print("Searching board in 1 seconds...", end="\r")
         time.sleep(1)
 

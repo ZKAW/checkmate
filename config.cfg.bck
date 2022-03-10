@@ -1,5 +1,2 @@
-[chess.com]
-username=your_username
-password=your_password
 [stockfish]
-stockfish_path_name=stockfish_path_name
+stockfish_exe_name=stockfish_exe_name
