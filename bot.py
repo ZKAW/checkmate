@@ -14,7 +14,7 @@ class Manager():
     def __init__(self):
         self.config = configparser.ConfigParser()
         self.config.read("config.cfg")
-        stockfish_exe_name = str(self.config.get("stockfish", "stockfish_exe_name"))
+        stockfish_exe_name = str(self.config.get("stockfish", "path"))
         stockfish_path = os.path.join('libs', stockfish_exe_name)
         self.myturn = False
         self.path = "figures/"
@@ -213,7 +213,11 @@ class ImageDet:
             higth2 = int(board_layout2.shape[0] * 99/100)
             board_layout1 = cv.resize(board_layout1, (width1, higth1))
             board_layout2 = cv.resize(board_layout2, (width2, higth2))
+
             os.system("cls")
+
+            print(f"max_val1: {max_val1}\nmax_val2: {max_val2}\nthreshold: {threshold}\n")
+
             if maxValue1 >= threshold:
                 print("Board found")
                 return True, [max_loc1, (int(max_loc1[0]+board_w1/8), int(max_loc1[1]+board_h1/8))], board_h1/8, board_w1/8,  board_h1, board_w1

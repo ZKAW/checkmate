@@ -18,9 +18,13 @@ pip3 install -r requirements.txt
 
 ## Play
 
-to start the script:
+Terminal version:
 ```
 python3 bot.py
+```
+GUI version:
+```
+python3 -m bot-gui
 ```
 
 Search for a game.
