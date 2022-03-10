@@ -62,17 +62,27 @@ class Manager(QObject):
 
         self.delay_range_table = [
             (0.7, 1.5),
+            (0.7, 1.6),
+            (0.7, 1.7),
+            (0.7, 1.8),
+            (0.7, 1.9),
             (0.7, 2),
+            (0.8, 2.1),
             (1, 3),
-            (1.5, 4),
+            (1.2, 4),
+            (1.3, 4),
+            (1.4, 4),
+            (1.7, 4),
+            (1.8, 5),
             (2, 5),
             (2.5, 6),
             (3, 7),
-            (3.5, 8),
-            (3.5, 9),
-            (3.5, 10),
-            (3.5, 11),
+            (3.1, 7),
+            (3.2, 8),
+            (3.3, 9),
+            (3.4, 10),
         ]
+
         self.delay_range_index = 0
 
     def run(self):
@@ -129,8 +139,8 @@ class Manager(QObject):
         except Exception as e:
             self.logger.error(f"Failed to get stockfish best_move: {e}")
         
-        if self.moves_counter >= 10:
-            self.delay_range_index = 10
+        if self.moves_counter >= len(self.delay_range_table):
+            self.delay_range_index = -1
         else:
             self.delay_range_index = self.moves_counter
 
