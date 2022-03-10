@@ -58,6 +58,7 @@ class Manager(QObject):
         self.board_height = board_height
         self.board_width = board_width
         self.auto_move = auto_move
+        self.legit = self.config.legit
 
         self.delay_range_table = [
             (0.7, 1.5),
@@ -137,12 +138,14 @@ class Manager(QObject):
         if self.auto_move:
             self.first_move = True
             chessBoard.makeMove(best_move)
+
+            print(f"Bot move: {best_move}\n")
             self.write_label.emit(f"Bot move: {best_move}")
 
-            delay = random.uniform(self.delay_range_table[self.delay_range_index][0], self.delay_range_table[self.delay_range_index][1])
-            print(f"Waiting {delay} seconds")
-            time.sleep(delay)
-            
+            if self.legit:
+                delay = random.uniform(self.delay_range_table[self.delay_range_index][0], self.delay_range_table[self.delay_range_index][1])
+                print(f"Waiting {delay} seconds")
+                time.sleep(delay)
 
             mouseContr = MouseControl()
             try:

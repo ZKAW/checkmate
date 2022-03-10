@@ -16,6 +16,7 @@ class Manager():
         self.config.read("config.cfg")
         stockfish_exe_name = str(self.config.get("stockfish", "path"))
         stockfish_path = os.path.join('libs', stockfish_exe_name)
+        self.legit = bool(self.config.get("settings", "legit"))
         self.myturn = False
         self.path = "figures/"
         self.board_width = 0
@@ -65,9 +66,10 @@ class Manager():
         else:
             self.delay_range_index = self.turn_counter
         
-        delay = random.uniform(self.delay_range_table[self.delay_range_index][0], self.delay_range_table[self.delay_range_index][1])
-        print(f"Waiting {delay} seconds")
-        time.sleep(delay)
+        if self.legit:
+            delay = random.uniform(self.delay_range_table[self.delay_range_index][0], self.delay_range_table[self.delay_range_index][1])
+            print(f"Waiting {delay} seconds")
+            time.sleep(delay)
 
         best_move = self.get_best_move(self.chessEngine)
         #print(best_move)

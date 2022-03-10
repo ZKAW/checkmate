@@ -5,3 +5,4 @@ class Config:
         config = configparser.ConfigParser()
         config.read("config.cfg")
         self.stockfish_path_name = f"libs/{config.get('stockfish', 'path')}"
+        self.legit = bool(config.get('settings', 'legit'))
