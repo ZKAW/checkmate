@@ -7,3 +7,4 @@ pyautogui
 pillow
 keyboard
 pypiwin32
+pyqt5

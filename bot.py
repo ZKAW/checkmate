@@ -23,14 +23,12 @@ class Manager():
         self.board_width = 0
         self.board_height = 0
 
-        self.skill_level = int(self.config.get("settings", "skill_level"))
-        if self.skill_level > 20: self.skill_level = 20
-        elif self.skill_level < 0: self.skill_level = 0
-        elif not self.skill_level: self.skill_level = 20
+        skill_level_conf = int(self.config.get('settings', 'skill_level'))
 
-        if skill_level > 20: skill_level = 20
-        elif skill_level < 0: skill_level = 0
-        elif skill_level == None: skill_level = 20
+        if skill_level_conf > 20: self.skill_level = 20
+        elif skill_level_conf < 0: self.skill_level = 0
+        elif skill_level_conf == None: self.skill_level = 20
+        else: self.skill_level = skill_level_conf
 
         self.turn_counter = 0
         self.delay_range_table = [

@@ -1,6 +1,5 @@
 *.log
 *.exe
-config.cfg
 stockfish_path/sf13/
 stockfish_path/DS_Store/
 logs/chessbot_logger.txt
@@ -10,4 +9,5 @@ pictures/turn_screen.png
 pictures/screen.png
 pictures/board_detection.png
 pictures/check_detection.png
+pictures/board_result.jpg
 __pycache__/

@@ -171,7 +171,6 @@ class Manager(QObject):
             self.myturn = False
             return best_move
         else:
-            
             if self.first_move:
                 self.write_label.emit(f"Best move: {best_move}")
                 imageDet = ImageDetection(self, self.logger)
@@ -222,8 +221,12 @@ class Manager(QObject):
     def detect_move(self):
         screenshot = pyautogui.screenshot()
         screenshot.save(self.turn_img)
+        time.sleep(1.5)
         imagDet = ImageDetection(self, self.logger)
+        time.sleep(0.5)
         screen = imagDet.loadImag(self.turn_img)
+        time.sleep(0.5)
+        print('img saved')
         fmove = False
         smove = False
         color_counter = 0
@@ -271,8 +274,11 @@ class Manager(QObject):
         self.progress.emit(self.bar_update_counter)
         
         fmove, smove = self.detect_move()
+        print("fmove: ", fmove, "smove: ", smove)
+        print("bot_move: ", bot_move,'\n')
 
         if fmove and smove and str(f"{fmove}{smove}") not in bot_move:
+            print('is in bot move')
             if "1" in smove and chessBoard.getPiece(fmove) == "p":
                 smove = f"{smove}Q"
                 
